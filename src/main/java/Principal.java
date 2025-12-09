@@ -20,7 +20,7 @@ public class Principal {
         }
         num2 = entrada.nextInt();
 
-        System.out.print("Introduce la operacion (+, -): ");
+        System.out.print("Introduce la operacion (+, -, *, /): ");
         Scanner eleccion= new Scanner(System.in);
         String operacion = eleccion.nextLine();
 
@@ -33,7 +33,13 @@ public class Principal {
         }else if (operacion.equals("-")){
             num3=num1-num2;
             solucion=num3;
-        } else {System.out.println("Operación inválida");
+        }else if (operacion.equals("*")){
+            num3=num1*num2;
+            solucion=num3;
+        }else if (operacion.equals("/")){
+            num3=num1/num2;
+            solucion=num3;
+        }else {System.out.println("Operación inválida");
             err=true;}//n
 
         if(!err){  //n
