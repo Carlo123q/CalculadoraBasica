@@ -1,9 +1,33 @@
 import java.util.Scanner;
 
+/**
+ * @author Equipo Patata
+ * @version 1.1
+ * @since 9/12/25
+ *
+ * Clase que actúa como una calculadora para realizar diferentes operaciones
+ * matemáticas básicas entre dos números.
+ *
+ * <p>
+ * Se pueden realizar las siguientes operaciones:
+ * </p>
+ *
+ * <ul>
+ *     <li><b>Suma (+):</b> Suma dos números enteros.</li>
+ *     <li><b>Resta (-):</b> Resta el segundo número al primero.</li>
+ *     <li><b>Multiplicación (*):</b> Multiplica dos números enteros.</li>
+ *     <li><b>División (/):</b> Divide el primer número entre el segundo,
+ *         controlando la división por cero.</li>
+ *     <li><b>MCD:</b> Calcula el máximo común divisor de dos números.</li>
+ *     <li><b>MCM:</b> Calcula el mínimo común múltiplo de dos números.</li>
+ * </ul>
+ */
 public class Principal {
     public static void main(String[] args) {
         Scanner entrada= new Scanner(System.in);
-        int num1, num2, num3, solucion = 0;
+        int num1, num2, solucion = 0;
+
+
 
         System.out.print("introduce el primer numero: ");
         while (!entrada.hasNextInt()) {
@@ -25,26 +49,24 @@ public class Principal {
 
         boolean err = false;
 
-        if (operacion.equals("+")) {
-            solucion = num1 + num2;
-        } else if (operacion.equals("-")) {
-            solucion = num1 - num2;
-        } else if (operacion.equals("*")) {
-            solucion = num1 * num2;
-        } else if (operacion.equals("/")) {
-            if (num2 == 0) {
-                System.out.println("ERROR: División por cero");
-                err = true;
-            } else {
-                solucion = num1 / num2;
+        switch (operacion) {
+            case "+" -> solucion = num1 + num2;
+            case "-" -> solucion = num1 - num2;
+            case "*" -> solucion = num1 * num2;
+            case "/" -> {
+                if (num2 == 0) {
+                    System.out.println("ERROR: División por cero");
+                    err = true;
+                } else {
+                    solucion = num1 / num2;
+                }
             }
-        } else if (operacion.equals("mcm")) {
-            solucion = mcm(num1, num2);
-        } else if (operacion.equals("mcd")) {
-            solucion = mcd(num1, num2);
-        } else {
-            System.out.println("Operación inválida");
-            err = true;
+            case "mcm" -> solucion = mcm(num1, num2);
+            case "mcd" -> solucion = mcd(num1, num2);
+            default -> {
+                System.out.println("Operación inválida");
+                err = true;
+            }
         }
 
         if (!err) {
